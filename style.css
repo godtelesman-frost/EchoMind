@@ -1,74 +1,9 @@
-*{
-
-.fake-chart{
-  height:200px;
-  margin-top:20px;
-  border-radius:18px;
-  background:linear-gradient(135deg,#7c3aed,#22d3ee);
+body{
+  background:black;
+  color:white;
+  font-family:Arial;
 }
 
-.stats-grid{
-  margin-top:25px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:20px;
-}
-
-.chat-box{
-  max-width:700px;
-  margin:auto;
-}
-
-.message{
-  padding:18px;
-  border-radius:16px;
-  margin-bottom:20px;
-}
-
-.student{
-  background:#1e293b;
-}
-
-.ai{
-  background:linear-gradient(135deg,#7c3aed,#22d3ee);
-}
-
-.featured{
-  border:2px solid #22d3ee;
-  transform:scale(1.05);
-}
-
-.cta{
-  text-align:center;
-}
-
-footer{
-  text-align:center;
-  padding:60px 20px;
-  border-top:1px solid rgba(255,255,255,0.08);
-}
-
-@media(max-width:900px){
-
-  .hero{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .hero h1{
-    font-size:52px;
-  }
-
-  .hero-buttons{
-    justify-content:center;
-  }
-
-  .dashboard-ui{
-    flex-direction:column;
-  }
-
-  nav{
-    display:none;
-  }
-
+h1{
+  color:red;
 }
