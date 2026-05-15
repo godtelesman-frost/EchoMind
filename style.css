@@ -184,3 +184,14 @@ footer{
   }
 
 }
+.bg-glow{
+  position:fixed;
+  width:600px;
+  height:600px;
+  background:#7c3aed;
+  filter:blur(200px);
+  opacity:0.25;
+  top:-200px;
+  right:-100px;
+  z-index:-1;
+}
