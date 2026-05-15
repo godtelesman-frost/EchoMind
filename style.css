@@ -198,3 +198,17 @@ footer{
   right:-100px;
   z-index:-1;
 }
+.feature-card,
+.dashboard-card,
+.price-card,
+.testimonial-card{
+  transition:0.3s ease;
+}
+
+.feature-card:hover,
+.dashboard-card:hover,
+.price-card:hover,
+.testimonial-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 30px rgba(124,58,237,0.4);
+}
