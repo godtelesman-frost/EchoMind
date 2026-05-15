@@ -36,7 +36,7 @@ buttons.forEach((button) => {
 // FAKE LIVE PRODUCTIVITY
 // =========================
 
-const progress = document.querySelector(".progress");
+progress.style.width = width + "%";
 
 let width = 0;
 
