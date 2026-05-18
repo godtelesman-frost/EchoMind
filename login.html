@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>EchoMind Login</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Arial,sans-serif;
+      background:#070b17;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+
+    .login-box{
+      width:400px;
+      background:#111827;
+      padding:40px;
+      border-radius:20px;
+      text-align:center;
+      box-shadow:0 0 30px rgba(124,58,237,0.4);
+    }
+
+    h1{
+      margin-bottom:20px;
+      color:#8b5cf6;
+    }
+
+    button{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      background:#7c3aed;
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+      margin-top:20px;
+    }
+
+    #user{
+      margin-top:20px;
+      color:#cbd5e1;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <h1>EchoMind</h1>
+
+    <p>
+      Continue with Google
+    </p>
+
+    <button onclick="googleLogin()">
+      Sign In With Google
+    </button>
+
+    <button onclick="logout()">
+      Logout
+    </button>
+
+    <p id="user">
+      Not Logged In
+    </p>
+
+  </div>
+
+  <script type="module">
+
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signOut,
+      onAuthStateChanged
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // PASTE FIREBASE CONFIG HERE
+
+    const firebaseConfig = {
+
+      apiKey: "PASTE_HERE",
+      authDomain: "PASTE_HERE",
+      projectId: "PASTE_HERE",
+      storageBucket: "PASTE_HERE",
+      messagingSenderId: "PASTE_HERE",
+      appId: "PASTE_HERE"
+
+    };
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    const provider = new GoogleAuthProvider();
+
+    // LOGIN
+
+    window.googleLogin = function(){
+
+      signInWithPopup(auth, provider)
+      .then((result) => {
+
+        const user = result.user;
+
+        document.getElementById("user").innerHTML =
+          "Logged in as: " + user.email;
+
+      })
+      .catch((error) => {
+
+        alert(error.message);
+
+      });
+
+    }
+
+    // LOGOUT
+
+    window.logout = function(){
+
+      signOut(auth);
+
+    }
+
+    // AUTH STATE
+
+    onAuthStateChanged(auth, (user) => {
+
+      if(user){
+
+        document.getElementById("user").innerHTML =
+          "Logged in as: " + user.email;
+
+      }else{
+
+        document.getElementById("user").innerHTML =
+          "Not Logged In";
+
+      }
+
+    });
+
+  </script>
+
+</body>
+
+</html>
