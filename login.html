@@ -4,6 +4,7 @@
 <head>
 
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>EchoMind Login</title>
@@ -40,6 +41,10 @@
       color:#8b5cf6;
     }
 
+    p{
+      margin-top:15px;
+    }
+
     button{
       width:100%;
       padding:15px;
@@ -53,7 +58,6 @@
     }
 
     #user{
-      margin-top:20px;
       color:#cbd5e1;
     }
 
@@ -71,11 +75,11 @@
       Continue with Google
     </p>
 
-    <button onclick="googleLogin()">
+    <button id="loginBtn">
       Sign In With Google
     </button>
 
-    <button onclick="logout()">
+    <button id="logoutBtn">
       Logout
     </button>
 
@@ -99,7 +103,7 @@
     }
     from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    // PASTE FIREBASE CONFIG HERE
+    // PASTE YOUR FIREBASE CONFIG HERE
 
     const firebaseConfig = {
 
@@ -124,11 +128,16 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);",
-      authDomain: "PASTE_HERE",
-      projectId: "PASTE_HERE",
-      storageBucket: "PASTE_HERE",
-      messagingSenderId: "PASTE_HERE",
-      appId: "PASTE_HERE"
+
+      authDomain: "YOUR_AUTH_DOMAIN",
+
+      projectId: "YOUR_PROJECT_ID",
+
+      storageBucket: "YOUR_STORAGE_BUCKET",
+
+      messagingSenderId: "YOUR_MESSAGING_ID",
+
+      appId: "YOUR_APP_ID"
 
     };
 
@@ -138,34 +147,42 @@ const analytics = getAnalytics(app);",
 
     const provider = new GoogleAuthProvider();
 
+    const loginBtn = document.getElementById("loginBtn");
+
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    const userText = document.getElementById("user");
+
     // LOGIN
 
-    window.googleLogin = function(){
+    loginBtn.addEventListener("click", () => {
 
       signInWithPopup(auth, provider)
+
       .then((result) => {
 
         const user = result.user;
 
-        document.getElementById("user").innerHTML =
+        userText.innerHTML =
           "Logged in as: " + user.email;
 
       })
+
       .catch((error) => {
 
         alert(error.message);
 
       });
 
-    }
+    });
 
     // LOGOUT
 
-    window.logout = function(){
+    logoutBtn.addEventListener("click", () => {
 
       signOut(auth);
 
-    }
+    });
 
     // AUTH STATE
 
@@ -173,12 +190,12 @@ const analytics = getAnalytics(app);",
 
       if(user){
 
-        document.getElementById("user").innerHTML =
+        userText.innerHTML =
           "Logged in as: " + user.email;
 
       }else{
 
-        document.getElementById("user").innerHTML =
+        userText.innerHTML =
           "Not Logged In";
 
       }
