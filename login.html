@@ -192,9 +192,17 @@ setTimeout(() => {
 
       if(user){
 
-        userText.innerHTML =
-          "Logged in as: " + user.email;
+  userText.innerHTML =
+    "Logged in as: " + user.email;
 
+  setTimeout(() => {
+
+    window.location.href =
+      "index.html";
+
+  },1000);
+
+}else{
       }else{
 
         userText.innerHTML =
