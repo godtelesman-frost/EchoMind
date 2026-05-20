@@ -1,3 +1,5 @@
+<!-- login.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,10 +57,16 @@
       font-weight:bold;
       cursor:pointer;
       margin-top:20px;
+      transition:0.3s;
+    }
+
+    button:hover{
+      transform:translateY(-3px);
     }
 
     #user{
       color:#cbd5e1;
+      margin-top:25px;
     }
 
   </style>
@@ -103,31 +111,11 @@
     }
     from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    // PASTE YOUR FIREBASE CONFIG HERE
+    // REPLACE THESE WITH YOUR FIREBASE VALUES
 
     const firebaseConfig = {
 
-      apiKey: "// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAt-wTjR617jZOOi5pHHNp22VGc5-j9HrM",
-  authDomain: "echomind-e4e8f.firebaseapp.com",
-  projectId: "echomind-e4e8f",
-  storageBucket: "echomind-e4e8f.firebasestorage.app",
-  messagingSenderId: "257680949964",
-  appId: "1:257680949964:web:f45a591a65d63e7a867869",
-  measurementId: "G-NHQLGRWJJJ"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);",
+      apiKey: "YOUR_API_KEY",
 
       authDomain: "YOUR_AUTH_DOMAIN",
 
@@ -141,11 +129,15 @@ const analytics = getAnalytics(app);",
 
     };
 
+    // INITIALIZE FIREBASE
+
     const app = initializeApp(firebaseConfig);
 
     const auth = getAuth(app);
 
     const provider = new GoogleAuthProvider();
+
+    // ELEMENTS
 
     const loginBtn = document.getElementById("loginBtn");
 
@@ -153,7 +145,7 @@ const analytics = getAnalytics(app);",
 
     const userText = document.getElementById("user");
 
-    // LOGIN
+    // GOOGLE LOGIN
 
     loginBtn.addEventListener("click", () => {
 
@@ -180,11 +172,17 @@ const analytics = getAnalytics(app);",
 
     logoutBtn.addEventListener("click", () => {
 
-      signOut(auth);
+      signOut(auth)
+
+      .then(() => {
+
+        userText.innerHTML = "Not Logged In";
+
+      });
 
     });
 
-    // AUTH STATE
+    // AUTO LOGIN CHECK
 
     onAuthStateChanged(auth, (user) => {
 
