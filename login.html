@@ -150,7 +150,17 @@
         const user = result.user;
 
         userText.innerHTML =
-          "Logged in as: " + user.email;
+userText.innerHTML =
+  "Logged in as: " + user.email;
+
+// REDIRECT TO HOME PAGE
+
+setTimeout(() => {
+
+  window.location.href =
+    "index.html";
+
+},1000);    
 
       })
 
