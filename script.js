@@ -670,8 +670,11 @@ if(generatePlanBtn){
   });
 
 }
+
+
+}
 // =========================
-// GEMINI AI ASSISTANT
+// GEMINI AI
 // =========================
 
 const sendBtn =
@@ -682,6 +685,8 @@ document.getElementById("userInput");
 
 const chatMessages =
 document.getElementById("chatMessages");
+
+// PASTE YOUR REAL KEY HERE
 
 const API_KEY =
 "AIzaSyC5_gEauON-7vaTcxf-e6oDYn5jsjm3oEw";
@@ -705,6 +710,8 @@ async function sendMessage(){
 
   chatMessages.appendChild(userDiv);
 
+  // CLEAR INPUT
+
   userInput.value = "";
 
   // AI LOADING
@@ -719,12 +726,10 @@ async function sendMessage(){
 
   chatMessages.appendChild(aiDiv);
 
-  chatMessages.scrollTop =
-  chatMessages.scrollHeight;
-
   try{
 
-    const response = await fetch(
+    const response =
+    await fetch(
 
       "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="
       + API_KEY,
@@ -742,15 +747,19 @@ async function sendMessage(){
           contents:[
 
             {
+
               parts:[
 
                 {
+
                   text:
-                  "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, focus, discipline, time management, routines, productivity, exams, and motivation. User message: "
+                  "You are EchoMind AI, a smart student productivity assistant. Help with studying, productivity, routines, schedules, exams and motivation. User: "
                   + message
+
                 }
 
               ]
+
             }
 
           ]
@@ -764,17 +773,25 @@ async function sendMessage(){
     const data =
     await response.json();
 
-    const reply =
-    data.candidates[0]
-    .content.parts[0].text;
+    console.log(data);
 
-    aiDiv.textContent =
-    reply;
+    if(data.candidates){
 
-    chatMessages.scrollTop =
-    chatMessages.scrollHeight;
+      aiDiv.textContent =
+
+      data.candidates[0]
+      .content.parts[0].text;
+
+    }else{
+
+      aiDiv.textContent =
+      "Gemini API error.";
+
+    }
 
   }catch(error){
+
+    console.log(error);
 
     aiDiv.textContent =
     "Error connecting to EchoMind AI.";
