@@ -670,3 +670,141 @@ if(generatePlanBtn){
   });
 
 }
+// =========================
+// GEMINI AI ASSISTANT
+// =========================
+
+const sendBtn =
+document.getElementById("sendBtn");
+
+const userInput =
+document.getElementById("userInput");
+
+const chatMessages =
+document.getElementById("chatMessages");
+
+const API_KEY =
+"AIzaSyC5_gEauON-7vaTcxf-e6oDYn5jsjm3oEw";
+
+async function sendMessage(){
+
+  const message =
+  userInput.value.trim();
+
+  if(message === "") return;
+
+  // USER MESSAGE
+
+  const userDiv =
+  document.createElement("div");
+
+  userDiv.classList.add("user-message");
+
+  userDiv.textContent =
+  message;
+
+  chatMessages.appendChild(userDiv);
+
+  userInput.value = "";
+
+  // AI LOADING
+
+  const aiDiv =
+  document.createElement("div");
+
+  aiDiv.classList.add("ai-message");
+
+  aiDiv.textContent =
+  "Thinking...";
+
+  chatMessages.appendChild(aiDiv);
+
+  chatMessages.scrollTop =
+  chatMessages.scrollHeight;
+
+  try{
+
+    const response = await fetch(
+
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="
+      + API_KEY,
+
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+          contents:[
+
+            {
+              parts:[
+
+                {
+                  text:
+                  "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, focus, discipline, time management, routines, productivity, exams, and motivation. User message: "
+                  + message
+                }
+
+              ]
+            }
+
+          ]
+
+        })
+
+      }
+
+    );
+
+    const data =
+    await response.json();
+
+    const reply =
+    data.candidates[0]
+    .content.parts[0].text;
+
+    aiDiv.textContent =
+    reply;
+
+    chatMessages.scrollTop =
+    chatMessages.scrollHeight;
+
+  }catch(error){
+
+    aiDiv.textContent =
+    "Error connecting to EchoMind AI.";
+
+  }
+
+}
+
+if(sendBtn){
+
+  sendBtn.addEventListener(
+    "click",
+    sendMessage
+  );
+
+}
+
+if(userInput){
+
+  userInput.addEventListener(
+    "keypress",
+    (e) => {
+
+      if(e.key === "Enter"){
+
+        sendMessage();
+
+      }
+
+    }
+  );
+
+}
