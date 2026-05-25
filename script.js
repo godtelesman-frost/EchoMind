@@ -686,7 +686,7 @@ document.getElementById("chatMessages");
 // OPENROUTER API KEY
 
 const API_KEY =
-"sk-or-v1-e6d...807";
+"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";
 
 // =========================
 // SEND MESSAGE
