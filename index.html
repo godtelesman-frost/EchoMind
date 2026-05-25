@@ -142,41 +142,114 @@
 
   <section class="dashboard-section" id="dashboard">
 
-    <h2>Student Time Manager</h2>
+<!-- TASK MANAGER / WEEKLY TRACKER -->
 
-    <div class="task-app">
+<section class="dashboard-section" id="dashboard">
 
-      <div class="task-input-area">
+  <h2>Student Time Manager</h2>
 
-        <input
-          type="text"
-          id="taskInput"
-          placeholder="Enter your study task..."
-        >
+  <div class="task-app">
 
-        <button id="addTaskBtn">
-          Add Task
-        </button>
+    <!-- TASK INPUT -->
 
-      </div>
+    <div class="task-input-area">
 
-      <div class="task-stats">
+      <input
+        type="text"
+        id="taskInput"
+        placeholder="Enter your study task..."
+      >
 
-        <h3>
-          Completed:
-          <span id="completedCount">0</span>
-        </h3>
-
-        <h3>
-          Remaining:
-          <span id="remainingCount">0</span>
-        </h3>
-
-      </div>
-
-      <ul id="taskList"></ul>
+      <button id="addTaskBtn">
+        Add Task
+      </button>
 
     </div>
+
+    <!-- STATS -->
+
+    <div class="task-stats">
+
+      <h3>
+        Completed:
+        <span id="completedCount">0</span>
+      </h3>
+
+      <h3>
+        Remaining:
+        <span id="remainingCount">0</span>
+      </h3>
+
+    </div>
+
+    <!-- TASK LIST -->
+
+    <ul id="taskList"></ul>
+
+    <!-- WEEKLY TRACKER -->
+
+    <div class="weekly-section">
+
+      <h2>Weekly Productivity</h2>
+
+      <div class="weekly-grid">
+
+        <div class="day-card">
+          <h3>Mon</h3>
+          <div class="week-bar">
+            <div class="week-fill mon-fill"></div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <h3>Tue</h3>
+          <div class="week-bar">
+            <div class="week-fill tue-fill"></div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <h3>Wed</h3>
+          <div class="week-bar">
+            <div class="week-fill wed-fill"></div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <h3>Thu</h3>
+          <div class="week-bar">
+            <div class="week-fill thu-fill"></div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <h3>Fri</h3>
+          <div class="week-bar">
+            <div class="week-fill fri-fill"></div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <h3>Sat</h3>
+          <div class="week-bar">
+            <div class="week-fill sat-fill"></div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <h3>Sun</h3>
+          <div class="week-bar">
+            <div class="week-fill sun-fill"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
   </section>
 
