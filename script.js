@@ -400,3 +400,273 @@ window.onload = () => {
   );
 
 };
+// ADD THIS TO BOTTOM OF script.js
+
+// =========================
+// REAL POMODORO TIMER
+// =========================
+
+const pomodoroTime =
+document.getElementById("pomodoroTime");
+
+const startTimer =
+document.getElementById("startTimer");
+
+const pauseTimer =
+document.getElementById("pauseTimer");
+
+const resetTimer =
+document.getElementById("resetTimer");
+
+let timer;
+let totalSeconds = 1500;
+
+function updatePomodoro(){
+
+  const minutes =
+  Math.floor(totalSeconds / 60);
+
+  const seconds =
+  totalSeconds % 60;
+
+  pomodoroTime.textContent =
+    String(minutes).padStart(2,"0")
+    +
+    ":"
+    +
+    String(seconds).padStart(2,"0");
+
+}
+
+if(startTimer){
+
+  startTimer.addEventListener("click", () => {
+
+    clearInterval(timer);
+
+    timer = setInterval(() => {
+
+      if(totalSeconds > 0){
+
+        totalSeconds--;
+
+        updatePomodoro();
+
+      }
+
+    },1000);
+
+  });
+
+}
+
+if(pauseTimer){
+
+  pauseTimer.addEventListener("click", () => {
+
+    clearInterval(timer);
+
+  });
+
+}
+
+if(resetTimer){
+
+  resetTimer.addEventListener("click", () => {
+
+    clearInterval(timer);
+
+    totalSeconds = 1500;
+
+    updatePomodoro();
+
+  });
+
+}
+
+updatePomodoro();
+
+// =========================
+// DAILY SCHEDULE
+// =========================
+
+const scheduleTime =
+document.getElementById("scheduleTime");
+
+const scheduleTask =
+document.getElementById("scheduleTask");
+
+const addScheduleBtn =
+document.getElementById("addScheduleBtn");
+
+const scheduleList =
+document.getElementById("scheduleList");
+
+let schedules =
+JSON.parse(
+  localStorage.getItem("echomindSchedules")
+) || [];
+
+function saveSchedules(){
+
+  localStorage.setItem(
+    "echomindSchedules",
+    JSON.stringify(schedules)
+  );
+
+}
+
+function renderSchedules(){
+
+  if(!scheduleList) return;
+
+  scheduleList.innerHTML = "";
+
+  schedules.forEach((schedule,index) => {
+
+    const li =
+    document.createElement("li");
+
+    li.classList.add("schedule-item");
+
+    li.innerHTML = `
+      <span>
+        ${schedule.time} - ${schedule.task}
+      </span>
+
+      <button onclick="deleteSchedule(${index})">
+        Delete
+      </button>
+    `;
+
+    scheduleList.appendChild(li);
+
+  });
+
+}
+
+window.deleteSchedule = function(index){
+
+  schedules.splice(index,1);
+
+  saveSchedules();
+
+  renderSchedules();
+
+}
+
+if(addScheduleBtn){
+
+  addScheduleBtn.addEventListener("click", () => {
+
+    if(
+      scheduleTime.value === "" ||
+      scheduleTask.value === ""
+    ) return;
+
+    schedules.push({
+
+      time:scheduleTime.value,
+
+      task:scheduleTask.value
+
+    });
+
+    saveSchedules();
+
+    renderSchedules();
+
+    scheduleTime.value = "";
+
+    scheduleTask.value = "";
+
+  });
+
+}
+
+renderSchedules();
+
+// =========================
+// STREAK SYSTEM
+// =========================
+
+const streakCount =
+document.getElementById("streakCount");
+
+const increaseStreak =
+document.getElementById("increaseStreak");
+
+let streak =
+localStorage.getItem("echomindStreak")
+|| 0;
+
+streakCount.textContent =
+streak + " 🔥";
+
+if(increaseStreak){
+
+  increaseStreak.addEventListener("click", () => {
+
+    streak++;
+
+    localStorage.setItem(
+      "echomindStreak",
+      streak
+    );
+
+    streakCount.textContent =
+    streak + " 🔥";
+
+  });
+
+}
+
+// =========================
+// AI STUDY GENERATOR
+// =========================
+
+const generatePlanBtn =
+document.getElementById("generatePlanBtn");
+
+const examInput =
+document.getElementById("examInput");
+
+const studyPlanOutput =
+document.getElementById("studyPlanOutput");
+
+if(generatePlanBtn){
+
+  generatePlanBtn.addEventListener("click", () => {
+
+    const value =
+    examInput.value;
+
+    studyPlanOutput.innerHTML = `
+
+      <h3>Generated Study Plan</h3>
+
+      <p>
+        Morning:
+        Revision and active recall.
+      </p>
+
+      <p>
+        Afternoon:
+        Practice problems and mock tests.
+      </p>
+
+      <p>
+        Evening:
+        Weak topic revision and summaries.
+      </p>
+
+      <p>
+        Night:
+        Quick recap and planning for tomorrow.
+      </p>
+
+    `;
+
+  });
+
+}
