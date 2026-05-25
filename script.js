@@ -693,6 +693,7 @@ const API_KEY =
 
 async function sendMessage(){
 
+
   const message =
   userInput.value.trim();
 
@@ -714,7 +715,7 @@ async function sendMessage(){
 
   userInput.value = "";
 
-  // AI LOADING
+  // AI MESSAGE
 
   const aiDiv =
   document.createElement("div");
@@ -730,29 +731,37 @@ async function sendMessage(){
 
     const response =
     await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="
-+ API_KEY,
-      {
-        method: "POST",
 
-        headers: {
-          "Content-Type": "application/json"
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + API_KEY,
+
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
         },
 
         body: JSON.stringify({
 
-         contents: [
-  {
-    role: "user",
-    parts: [
-      {
-        text:
-        "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, focus, routines, productivity and motivation. User message: "
-        + message
+          contents: [
+            {
+              role: "user",
+              parts: [
+                {
+                  text:
+                  "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, productivity, routines, focus and exams. User message: "
+                  + message
+                }
+              ]
+            }
+          ]
+
+        })
+
       }
-    ]
-  }
-]
+
+    );
 
     const data =
     await response.json();
@@ -762,6 +771,7 @@ async function sendMessage(){
     if(data.candidates){
 
       aiDiv.textContent =
+
       data.candidates[0]
       .content.parts[0].text;
 
