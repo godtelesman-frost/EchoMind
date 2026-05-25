@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="style.css">
 
 </head>
-<script src="script.js"></script>
+
 <body>
 
   <div class="bg-glow"></div>
@@ -27,12 +27,10 @@
     </div>
 
     <nav>
-
       <a href="#features">Features</a>
-      <a href="#dashboard">Dashboard</a>
+      <a href="#dashboard">Task Manager</a>
       <a href="#ai">AI</a>
       <a href="#pricing">Pricing</a>
-
     </nav>
 
     <a href="login.html" class="nav-btn">
@@ -54,17 +52,18 @@
 
       <p>
         EchoMind helps students improve productivity,
-        regularity, discipline, and time management.
+        regularity, discipline, and time management with
+        smart planning tools and a clean daily workflow.
       </p>
 
       <div class="hero-buttons">
 
-        <a href="#features" class="primary-btn">
+        <a href="#dashboard" class="primary-btn">
           Get Started
         </a>
 
-        <a href="#dashboard" class="secondary-btn">
-          View Dashboard
+        <a href="#features" class="secondary-btn">
+          View Features
         </a>
 
       </div>
@@ -74,7 +73,6 @@
     <div class="dashboard-preview">
 
       <div class="dashboard-card">
-
         <h3>Today's Productivity</h3>
 
         <div class="progress-bar">
@@ -82,23 +80,16 @@
         </div>
 
         <p>82% Completed</p>
-
       </div>
 
       <div class="dashboard-card">
-
         <h3>Study Streak</h3>
-
         <h2>14 Days 🔥</h2>
-
       </div>
 
       <div class="dashboard-card">
-
         <h3>Focus Timer</h3>
-
         <h2>25:00</h2>
-
       </div>
 
     </div>
@@ -114,61 +105,76 @@
     <div class="feature-grid">
 
       <div class="feature-card">
-
         <h3>AI Study Planner</h3>
-
-        <p>Create smart schedules automatically.</p>
-
+        <p>Create smart schedules automatically for your day.</p>
       </div>
 
       <div class="feature-card">
-
         <h3>Habit Tracker</h3>
-
-        <p>Build consistency every day.</p>
-
+        <p>Build consistency and regular study habits.</p>
       </div>
 
       <div class="feature-card">
-
         <h3>Focus Timer</h3>
+        <p>Use Pomodoro sessions to study without distraction.</p>
+      </div>
 
-        <p>Pomodoro sessions for deep focus.</p>
+      <div class="feature-card">
+        <h3>Assignment Reminders</h3>
+        <p>Track deadlines and never miss important work.</p>
+      </div>
 
+      <div class="feature-card">
+        <h3>Progress Analytics</h3>
+        <p>See your productivity and study patterns clearly.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Routine Builder</h3>
+        <p>Design a daily study routine that actually works.</p>
       </div>
 
     </div>
 
   </section>
 
-  <!-- DASHBOARD -->
+  <!-- TASK MANAGER / DASHBOARD -->
 
   <section class="dashboard-section" id="dashboard">
 
-    <h2>Dashboard</h2>
+    <h2>Student Time Manager</h2>
 
-    <div class="dashboard-ui">
+    <div class="task-app">
 
-      <div class="sidebar">
+      <div class="task-input-area">
 
-        <p>Dashboard</p>
-        <p>Planner</p>
-        <p>Analytics</p>
-        <p>Focus Mode</p>
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="Enter your study task..."
+        >
+
+        <button id="addTaskBtn">
+          Add Task
+        </button>
+
+      </div>
+
+      <div class="task-stats">
+
+        <h3>
+          Completed:
+          <span id="completedCount">0</span>
+        </h3>
+
+        <h3>
+          Remaining:
+          <span id="remainingCount">0</span>
+        </h3>
 
       </div>
 
-      <div class="main-panel">
-
-        <div class="chart-card">
-
-          <h3>Weekly Study Hours</h3>
-
-          <div class="fake-chart"></div>
-
-        </div>
-
-      </div>
+      <ul id="taskList"></ul>
 
     </div>
 
@@ -183,11 +189,11 @@
     <div class="chat-box">
 
       <div class="message student">
-        I have exams in 2 weeks.
+        I have exams in 2 weeks and I’m behind.
       </div>
 
       <div class="message ai">
-        I created a smart recovery plan for you.
+        I created a smart study recovery plan based on your exams.
       </div>
 
     </div>
@@ -203,27 +209,15 @@
     <div class="testimonial-grid">
 
       <div class="testimonial-card">
-
-        <p>
-          EchoMind changed my study routine.
-        </p>
-
+        <p>EchoMind changed my study routine.</p>
       </div>
 
       <div class="testimonial-card">
-
-        <p>
-          I became more disciplined.
-        </p>
-
+        <p>I became more disciplined.</p>
       </div>
 
       <div class="testimonial-card">
-
-        <p>
-          The AI planner is amazing.
-        </p>
-
+        <p>The AI planner is amazing.</p>
       </div>
 
     </div>
@@ -241,12 +235,8 @@
       <div class="price-card">
 
         <h3>Free</h3>
-
         <h1>₹0</h1>
-
-        <p>
-          Basic planner and tracking.
-        </p>
+        <p>Basic planner and tracking.</p>
 
         <a href="login.html" class="primary-btn">
           Get Free Plan
@@ -257,12 +247,8 @@
       <div class="price-card featured">
 
         <h3>Pro Student</h3>
-
         <h1>₹299</h1>
-
-        <p>
-          Advanced AI productivity tools.
-        </p>
+        <p>Advanced AI productivity tools.</p>
 
         <a href="https://buy.stripe.com" target="_blank" class="primary-btn">
           Buy Pro
@@ -273,12 +259,8 @@
       <div class="price-card">
 
         <h3>School</h3>
-
         <h1>Custom</h1>
-
-        <p>
-          For institutions and teams.
-        </p>
+        <p>For institutions and teams.</p>
 
         <a href="mailto:echomind@gmail.com" class="primary-btn">
           Contact Us
@@ -315,6 +297,8 @@
     </p>
 
   </footer>
+
+  <script src="script.js"></script>
 
 </body>
 
