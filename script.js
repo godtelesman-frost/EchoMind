@@ -689,7 +689,7 @@ document.getElementById("chatMessages");
 // PASTE YOUR REAL KEY HERE
 
 const API_KEY =
-"AIzaSyC5_gEauON-7vaTcxf-e6oDYn5jsjm3oEw";
+"AIzaSyCllPrx9z32BMZ5RF3i3ENgwH4pGRkVxG4";
 
 async function sendMessage(){
 
