@@ -693,11 +693,12 @@ const API_KEY =
 
 async function sendMessage(){
 
-
   const message =
   userInput.value.trim();
 
-  if(message === "") return;
+  if(message === ""){
+    return;
+  }
 
   // USER MESSAGE
 
@@ -727,7 +728,7 @@ async function sendMessage(){
 
   chatMessages.appendChild(aiDiv);
 
-  try{
+  try {
 
     const response =
     await fetch(
@@ -736,45 +737,51 @@ async function sendMessage(){
 
       {
 
-        method:"POST",
+        method: "POST",
 
-        headers:{
-          "Content-Type":"application/json"
+        headers: {
+          "Content-Type": "application/json"
         },
 
-       body: JSON.stringify({
+        body: JSON.stringify({
 
-  contents: [
+          contents: [
 
-    {
+            {
 
-      parts: [
+              parts: [
 
-        {
+                {
 
-          text:
-          "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, focus, routines and productivity. User message: "
-          + message
+                  text:
+                  "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, focus, routines and productivity. User message: "
+                  + message
 
-        }
+                }
 
-      ]
+              ]
 
-    }
+            }
 
-  ]
+          ]
 
-})
+        })
+
+      }
+
+    );
 
     const data =
     await response.json();
 
     console.log(data);
 
-    if(data.candidates){
+    if(
+      data.candidates &&
+      data.candidates.length > 0
+    ){
 
       aiDiv.textContent =
-
       data.candidates[0]
       .content.parts[0].text;
 
@@ -785,7 +792,7 @@ async function sendMessage(){
 
     }
 
-  }catch(error){
+  } catch(error){
 
     console.log(error);
 
@@ -795,7 +802,8 @@ async function sendMessage(){
   }
 
 }
-// =========================
+
+ // =========================
 // AI BUTTON EVENTS
 // =========================
 
