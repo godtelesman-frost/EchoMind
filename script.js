@@ -670,11 +670,8 @@ if(generatePlanBtn){
   });
 
 }
-
-
-
 // =========================
-// GEMINI AI
+// OPENROUTER AI
 // =========================
 
 const sendBtn =
@@ -686,10 +683,14 @@ document.getElementById("userInput");
 const chatMessages =
 document.getElementById("chatMessages");
 
-// PASTE YOUR REAL KEY HERE
+// OPENROUTER API KEY
 
 const API_KEY =
-"AIzaSyCllPrx9z32BMZ5RF3i3ENgwH4pGRkVxG4";
+"sk-or-v1-e6d...807";
+
+// =========================
+// SEND MESSAGE
+// =========================
 
 async function sendMessage(){
 
@@ -728,38 +729,51 @@ async function sendMessage(){
 
   chatMessages.appendChild(aiDiv);
 
-  try {
+  chatMessages.scrollTop =
+  chatMessages.scrollHeight;
+
+  try{
 
     const response =
     await fetch(
 
-      "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=" + API_KEY,
+      "https://openrouter.ai/api/v1/chat/completions",
 
       {
 
-        method: "POST",
+        method:"POST",
 
-        headers: {
-          "Content-Type": "application/json"
+        headers:{
+
+          "Authorization":
+          "Bearer " + API_KEY,
+
+          "Content-Type":
+          "application/json"
+
         },
 
         body: JSON.stringify({
 
-          contents: [
+          model:
+          "deepseek/deepseek-chat",
+
+          messages:[
 
             {
 
-              parts: [
+              role:"system",
 
-                {
+              content:
+              "You are EchoMind AI, a smart student productivity assistant helping students with studying, schedules, routines, focus, productivity, exams and motivation."
 
-                  text:
-                  "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, focus, routines and productivity. User message: "
-                  + message
+            },
 
-                }
+            {
 
-              ]
+              role:"user",
+
+              content: message
 
             }
 
@@ -777,22 +791,23 @@ async function sendMessage(){
     console.log(data);
 
     if(
-      data.candidates &&
-      data.candidates.length > 0
+      data.choices &&
+      data.choices.length > 0
     ){
 
       aiDiv.textContent =
-      data.candidates[0]
-      .content.parts[0].text;
+
+      data.choices[0]
+      .message.content;
 
     }else{
 
       aiDiv.textContent =
-      "Gemini API error.";
+      "AI response error.";
 
     }
 
-  } catch(error){
+  }catch(error){
 
     console.log(error);
 
@@ -803,8 +818,8 @@ async function sendMessage(){
 
 }
 
- // =========================
-// AI BUTTON EVENTS
+// =========================
+// BUTTON CLICK
 // =========================
 
 if(sendBtn){
@@ -816,10 +831,16 @@ if(sendBtn){
 
 }
 
+// =========================
+// ENTER KEY
+// =========================
+
 if(userInput){
 
   userInput.addEventListener(
+
     "keypress",
+
     function(e){
 
       if(e.key === "Enter"){
@@ -829,6 +850,9 @@ if(userInput){
       }
 
     }
+
   );
 
 }
+
+
