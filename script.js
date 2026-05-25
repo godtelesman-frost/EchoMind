@@ -789,3 +789,32 @@ async function sendMessage(){
   }
 
 }
+// =========================
+// AI BUTTON EVENTS
+// =========================
+
+if(sendBtn){
+
+  sendBtn.addEventListener(
+    "click",
+    sendMessage
+  );
+
+}
+
+if(userInput){
+
+  userInput.addEventListener(
+    "keypress",
+    function(e){
+
+      if(e.key === "Enter"){
+
+        sendMessage();
+
+      }
+
+    }
+  );
+
+}
