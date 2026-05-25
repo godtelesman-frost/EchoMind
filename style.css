@@ -385,3 +385,128 @@ footer{
 .sun-fill{
   height:60%;
 }
+/* ADD THIS TO BOTTOM OF style.css */
+
+/* POMODORO */
+
+.pomodoro-section,
+.schedule-section,
+.streak-section,
+.ai-planner-section,
+.profile-section{
+  padding:100px 8%;
+}
+
+.pomodoro-box,
+.schedule-app,
+.streak-box,
+.ai-planner-box,
+.profile-card{
+  max-width:700px;
+  margin:auto;
+  background:#111827;
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+}
+
+#pomodoroTime{
+  font-size:90px;
+  margin-bottom:30px;
+}
+
+.pomodoro-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.pomodoro-buttons button,
+.schedule-inputs button,
+#increaseStreak,
+#generatePlanBtn{
+  padding:14px 25px;
+  border:none;
+  border-radius:12px;
+  background:#7c3aed;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* SCHEDULE */
+
+.schedule-inputs{
+  display:flex;
+  gap:15px;
+  margin-bottom:30px;
+  flex-wrap:wrap;
+}
+
+.schedule-inputs input{
+  flex:1;
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:#1e293b;
+  color:white;
+}
+
+#scheduleList{
+  list-style:none;
+}
+
+.schedule-item{
+  background:#1e293b;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:15px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* STREAK */
+
+#streakCount{
+  font-size:70px;
+  margin-bottom:30px;
+}
+
+/* AI */
+
+#examInput{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:12px;
+  background:#1e293b;
+  color:white;
+  margin-bottom:20px;
+}
+
+#studyPlanOutput{
+  margin-top:30px;
+  text-align:left;
+  line-height:1.8;
+}
+
+/* PROFILE */
+
+.profile-card p{
+  margin-top:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .pomodoro-buttons{
+    flex-direction:column;
+  }
+
+  .schedule-inputs{
+    flex-direction:column;
+  }
+
+}
