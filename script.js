@@ -727,40 +727,39 @@ async function sendMessage(){
   chatMessages.appendChild(aiDiv);
 
   try{
-    
- const response =
-await fetch(
-  "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=" + API_KEY,
-  {
-    method: "POST",
 
-    headers: {
-      "Content-Type": "application/json"
-    },
+    const response =
+    await fetch(
+      "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=" + API_KEY,
+      {
+        method: "POST",
 
-    body: JSON.stringify({
+        headers: {
+          "Content-Type": "application/json"
+        },
 
-      contents: [
+        body: JSON.stringify({
 
-        {
-          parts: [
+          contents: [
 
             {
-              text:
-              "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, routines, focus, and productivity. User message: "
-              + message
+              parts: [
+
+                {
+                  text:
+                  "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, focus, routines and productivity. User message: "
+                  + message
+                }
+
+              ]
             }
 
           ]
-        }
 
-      ]
+        })
 
-    })
-
-  }
-
-);
+      }
+    );
 
     const data =
     await response.json();
@@ -770,7 +769,6 @@ await fetch(
     if(data.candidates){
 
       aiDiv.textContent =
-
       data.candidates[0]
       .content.parts[0].text;
 
@@ -789,31 +787,5 @@ await fetch(
     "Error connecting to EchoMind AI.";
 
   }
-
-}
-
-if(sendBtn){
-
-  sendBtn.addEventListener(
-    "click",
-    sendMessage
-  );
-
-}
-
-if(userInput){
-
-  userInput.addEventListener(
-    "keypress",
-    (e) => {
-
-      if(e.key === "Enter"){
-
-        sendMessage();
-
-      }
-
-    }
-  );
 
 }
