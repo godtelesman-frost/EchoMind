@@ -741,26 +741,18 @@ async function sendMessage(){
 
         body: JSON.stringify({
 
-          contents: [
-
-            {
-              parts: [
-
-                {
-                  text:
-                  "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, focus, routines and productivity. User message: "
-                  + message
-                }
-
-              ]
-            }
-
-          ]
-
-        })
-
+         contents: [
+  {
+    role: "user",
+    parts: [
+      {
+        text:
+        "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, focus, routines, productivity and motivation. User message: "
+        + message
       }
-    );
+    ]
+  }
+]
 
     const data =
     await response.json();
