@@ -191,7 +191,141 @@
     <div class="weekly-section">
 
       <h2>Weekly Productivity</h2>
+<!-- ADD THIS INSIDE index.html -->
+<!-- PLACE BELOW WEEKLY PRODUCTIVITY SECTION -->
 
+<!-- REAL POMODORO TIMER -->
+
+<section class="pomodoro-section">
+
+  <h2>Pomodoro Focus Timer</h2>
+
+  <div class="pomodoro-box">
+
+    <h1 id="pomodoroTime">
+      25:00
+    </h1>
+
+    <div class="pomodoro-buttons">
+
+      <button id="startTimer">
+        Start
+      </button>
+
+      <button id="pauseTimer">
+        Pause
+      </button>
+
+      <button id="resetTimer">
+        Reset
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DAILY STUDY SCHEDULE -->
+
+<section class="schedule-section">
+
+  <h2>Daily Study Schedule</h2>
+
+  <div class="schedule-app">
+
+    <div class="schedule-inputs">
+
+      <input
+        type="time"
+        id="scheduleTime"
+      >
+
+      <input
+        type="text"
+        id="scheduleTask"
+        placeholder="Enter subject or task"
+      >
+
+      <button id="addScheduleBtn">
+        Add
+      </button>
+
+    </div>
+
+    <ul id="scheduleList"></ul>
+
+  </div>
+
+</section>
+
+<!-- STREAK SECTION -->
+
+<section class="streak-section">
+
+  <h2>Study Streak</h2>
+
+  <div class="streak-box">
+
+    <h1 id="streakCount">
+      0 🔥
+    </h1>
+
+    <button id="increaseStreak">
+      Complete Productive Day
+    </button>
+
+  </div>
+
+</section>
+
+<!-- AI STUDY GENERATOR -->
+
+<section class="ai-planner-section">
+
+  <h2>AI Study Generator</h2>
+
+  <div class="ai-planner-box">
+
+    <input
+      type="text"
+      id="examInput"
+      placeholder="Example: Exams in 10 days"
+    >
+
+    <button id="generatePlanBtn">
+      Generate Plan
+    </button>
+
+    <div id="studyPlanOutput"></div>
+
+  </div>
+
+</section>
+
+<!-- PROFILE -->
+
+<section class="profile-section">
+
+  <h2>Your Profile</h2>
+
+  <div class="profile-card">
+
+    <h3 id="profileEmail">
+      Student User
+    </h3>
+
+    <p>
+      Productivity Level: High
+    </p>
+
+    <p>
+      EchoMind Pro Member
+    </p>
+
+  </div>
+
+</section>
       <div class="weekly-grid">
 
         <div class="day-card">
