@@ -727,39 +727,31 @@ async function sendMessage(){
   chatMessages.appendChild(aiDiv);
 
   try{
-
-const response =
+    
+ const response =
 await fetch(
-
-  "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key="
-  + API_KEY,
-
+  "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=" + API_KEY,
   {
+    method: "POST",
 
-    method:"POST",
-
-    headers:{
-      "Content-Type":"application/json"
+    headers: {
+      "Content-Type": "application/json"
     },
 
-    body:JSON.stringify({
+    body: JSON.stringify({
 
-      contents:[
+      contents: [
 
         {
-
-          parts:[
+          parts: [
 
             {
-
               text:
-              "You are EchoMind AI, a smart student productivity assistant. Help with studying, productivity, routines, schedules, exams and motivation. User: "
+              "You are EchoMind AI, a smart student productivity assistant. Help students with studying, schedules, exams, routines, focus, and productivity. User message: "
               + message
-
             }
 
           ]
-
         }
 
       ]
