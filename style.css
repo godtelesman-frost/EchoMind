@@ -314,3 +314,74 @@ footer{
   }
 
 }
+/* WEEKLY PRODUCTIVITY */
+
+.weekly-section{
+  margin-top:60px;
+}
+
+.weekly-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:20px;
+  margin-top:30px;
+}
+
+.day-card{
+  background:#111827;
+  padding:20px;
+  border-radius:16px;
+  text-align:center;
+}
+
+.week-bar{
+  width:100%;
+  height:220px;
+  background:#1e293b;
+  border-radius:20px;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  margin-top:20px;
+}
+
+.week-fill{
+  width:100%;
+  border-radius:20px;
+  background:linear-gradient(
+    180deg,
+    #22d3ee,
+    #7c3aed
+  );
+  transition:0.5s;
+}
+
+/* WEEK DATA */
+
+.mon-fill{
+  height:80%;
+}
+
+.tue-fill{
+  height:65%;
+}
+
+.wed-fill{
+  height:90%;
+}
+
+.thu-fill{
+  height:55%;
+}
+
+.fri-fill{
+  height:75%;
+}
+
+.sat-fill{
+  height:95%;
+}
+
+.sun-fill{
+  height:60%;
+}
