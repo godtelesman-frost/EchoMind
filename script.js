@@ -671,7 +671,7 @@ if(generatePlanBtn){
 
 }
 // =========================
-// OPENROUTER AI
+// DEMO AI CHAT
 // =========================
 
 const sendBtn =
@@ -683,16 +683,40 @@ document.getElementById("userInput");
 const chatMessages =
 document.getElementById("chatMessages");
 
-// OPENROUTER API KEY
+function fakeAIResponse(message){
 
-const API_KEY =
-"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";
+  const lower =
+  message.toLowerCase();
 
-// =========================
-// SEND MESSAGE
-// =========================
+  if(lower.includes("study")){
 
-async function sendMessage(){
+    return "Study in focused 45-minute sessions with 10-minute breaks.";
+
+  }
+
+  if(lower.includes("schedule")){
+
+    return "Create a morning revision routine and evening practice session.";
+
+  }
+
+  if(lower.includes("motivation")){
+
+    return "Discipline beats motivation. Start small and stay consistent.";
+
+  }
+
+  if(lower.includes("exam")){
+
+    return "Focus on weak topics first and practice previous questions.";
+
+  }
+
+  return "EchoMind AI recommends staying consistent and planning your day clearly.";
+
+}
+
+function sendMessage(){
 
   const message =
   userInput.value.trim();
@@ -729,98 +753,19 @@ async function sendMessage(){
 
   chatMessages.appendChild(aiDiv);
 
-  chatMessages.scrollTop =
-  chatMessages.scrollHeight;
-
-  try{
-
-    const response =
-    await fetch(
-
-      "https://openrouter.ai/api/v1/chat/completions",
-
-      {
-
-        method:"POST",
-
-        headers:{
-
-          "Authorization":
-          "Bearer " + API_KEY,
-
-          "Content-Type":
-          "application/json"
-
-        },
-
-        body: JSON.stringify({
-
-          model:
-          "deepseek/deepseek-chat",
-
-          messages:[
-
-            {
-
-              role:"system",
-
-              content:
-              "You are EchoMind AI, a smart student productivity assistant helping students with studying, schedules, routines, focus, productivity, exams and motivation."
-
-            },
-
-            {
-
-              role:"user",
-
-              content: message
-
-            }
-
-          ]
-
-        })
-
-      }
-
-    );
-
-    const data =
-    await response.json();
-
-    console.log(data);
-
-    if(
-      data.choices &&
-      data.choices.length > 0
-    ){
-
-      aiDiv.textContent =
-
-      data.choices[0]
-      .message.content;
-
-    }else{
-
-      aiDiv.textContent =
-      "AI response error.";
-
-    }
-
-  }catch(error){
-
-    console.log(error);
+  setTimeout(() => {
 
     aiDiv.textContent =
-    "Error connecting to EchoMind AI.";
+    fakeAIResponse(message);
 
-  }
+    chatMessages.scrollTop =
+    chatMessages.scrollHeight;
+
+  },1000);
 
 }
 
-// =========================
-// BUTTON CLICK
-// =========================
+// BUTTON
 
 if(sendBtn){
 
@@ -831,16 +776,12 @@ if(sendBtn){
 
 }
 
-// =========================
 // ENTER KEY
-// =========================
 
 if(userInput){
 
   userInput.addEventListener(
-
     "keypress",
-
     function(e){
 
       if(e.key === "Enter"){
@@ -850,7 +791,6 @@ if(userInput){
       }
 
     }
-
   );
 
 }
