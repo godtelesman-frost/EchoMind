@@ -694,14 +694,6 @@ document.getElementById("userInput");
 
 const chatMessages =
 document.getElementById("chatMessages");
-const sendBtn =
-document.getElementById("sendBtn");
-
-const userInput =
-document.getElementById("userInput");
-
-const chatMessages =
-document.getElementById("chatMessages");
 
 function fakeAIResponse(message){
 
