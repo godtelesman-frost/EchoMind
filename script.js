@@ -700,42 +700,181 @@ function fakeAIResponse(message){
   const lower =
   message.toLowerCase();
 
+  // GREETINGS
+
+  if(
+    lower.includes("hello") ||
+    lower.includes("hi") ||
+    lower.includes("hey")
+  ){
+
+    return `
+Hello! 👋
+
+I'm EchoMind AI.
+
+I can help you with:
+
+• Study plans
+• Productivity
+• Time management
+• Coding
+• Exams
+• Motivation
+• Daily routines
+
+What would you like help with today?
+`;
+
+  }
+
+  // STUDY
+
   if(lower.includes("study")){
 
-    return "Study in focused 45-minute sessions with 10-minute breaks.";
+    return `
+📚 Study Strategy
+
+1. Study for 45 minutes.
+2. Take a 10 minute break.
+3. Use active recall.
+4. Use spaced repetition.
+5. Focus on weak topics first.
+
+This method improves retention and reduces burnout.
+`;
 
   }
 
-  if(lower.includes("schedule")){
-
-    return "Create a morning revision routine and evening practice session.";
-
-  }
-
-  if(lower.includes("motivation")){
-
-    return "Discipline beats motivation. Start small and stay consistent.";
-
-  }
+  // EXAMS
 
   if(lower.includes("exam")){
 
-    return "Focus on weak topics first and practice previous questions.";
+    return `
+🎯 Exam Preparation Plan
+
+Morning:
+• Revise theory
+
+Afternoon:
+• Practice questions
+
+Evening:
+• Review mistakes
+
+Night:
+• Quick recap
+
+Focus on understanding concepts instead of memorizing everything.
+`;
 
   }
 
-  return "EchoMind AI recommends staying consistent and planning your day clearly.";
+  // SCHEDULE
+
+  if(lower.includes("schedule")){
+
+    return `
+📅 Recommended Daily Schedule
+
+6:00 AM - Wake up
+
+7:00 AM - Study Session 1
+
+10:00 AM - Break
+
+11:00 AM - Study Session 2
+
+2:00 PM - Practice Problems
+
+5:00 PM - Exercise
+
+7:00 PM - Revision
+
+9:00 PM - Planning Tomorrow
+`;
+
+  }
+
+  // MOTIVATION
+
+  if(lower.includes("motivation")){
+
+    return `
+🔥 Motivation Tip
+
+Don't wait for motivation.
+
+Build discipline.
+
+Even 20 minutes of focused work every day beats waiting for the perfect mood to start.
+`;
+
+  }
+
+  // CODING
+
+  if(
+    lower.includes("code") ||
+    lower.includes("javascript") ||
+    lower.includes("html") ||
+    lower.includes("css")
+  ){
+
+    return `
+💻 Coding Help
+
+I can help with:
+
+• HTML
+• CSS
+• JavaScript
+• Debugging
+• Website design
+
+Describe your problem and I'll guide you step-by-step.
+`;
+
+  }
+
+  // PRODUCTIVITY
+
+  if(
+    lower.includes("productive") ||
+    lower.includes("productivity")
+  ){
+
+    return `
+⚡ Productivity System
+
+1. Plan your day.
+2. Prioritize 3 important tasks.
+3. Use Pomodoro sessions.
+4. Remove distractions.
+5. Track progress daily.
+
+Consistency beats intensity.
+`;
+
+  }
+
+  // DEFAULT
+
+  return `
+I'm EchoMind AI.
+
+I can help with:
+• Studying
+• Exams
+• Productivity
+• Schedules
+• Coding
+• Time management
+
+Tell me more about what you need help with and I'll create a detailed plan.
+`;
 
 }
-
-function sendMessage(){
-
-  const message =
-  userInput.value.trim();
-
-  if(message === ""){
-    return;
-  }
 
   // USER MESSAGE
 
