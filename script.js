@@ -673,7 +673,27 @@ if(generatePlanBtn){
 // =========================
 // DEMO AI CHAT
 // =========================
+let conversationHistory = [
 
+  {
+    role: "system",
+    content: `
+You are EchoMind AI.
+You are an advanced AI assistant.
+Give detailed answers and help students with studying, coding, exams and productivity.
+`
+  }
+
+];
+
+const sendBtn =
+document.getElementById("sendBtn");
+
+const userInput =
+document.getElementById("userInput");
+
+const chatMessages =
+document.getElementById("chatMessages");
 const sendBtn =
 document.getElementById("sendBtn");
 
