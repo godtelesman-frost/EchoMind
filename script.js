@@ -876,7 +876,14 @@ Tell me more about what you need help with and I'll create a detailed plan.
 
 }
 
-  // USER MESSAGE
+function sendMessage(){
+
+  const message =
+  userInput.value.trim();
+
+  if(message === ""){
+    return;
+  }
 
   const userDiv =
   document.createElement("div");
@@ -888,11 +895,7 @@ Tell me more about what you need help with and I'll create a detailed plan.
 
   chatMessages.appendChild(userDiv);
 
-  // CLEAR INPUT
-
   userInput.value = "";
-
-  // AI MESSAGE
 
   const aiDiv =
   document.createElement("div");
@@ -913,6 +916,8 @@ Tell me more about what you need help with and I'll create a detailed plan.
     chatMessages.scrollHeight;
 
   },1000);
+
+}
 
 
 
