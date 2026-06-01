@@ -695,188 +695,20 @@ document.getElementById("userInput");
 const chatMessages =
 document.getElementById("chatMessages");
 
-function fakeAIResponse(message){
+// =========================
+// REAL AI CHAT
+// =========================
 
-  const lower =
-  message.toLowerCase();
+const sendBtn =
+document.getElementById("sendBtn");
 
-  // GREETINGS
+const userInput =
+document.getElementById("userInput");
 
-  if(
-    lower.includes("hello") ||
-    lower.includes("hi") ||
-    lower.includes("hey")
-  ){
+const chatMessages =
+document.getElementById("chatMessages");
 
-    return `
-Hello! 👋
-
-I'm EchoMind AI.
-
-I can help you with:
-
-• Study plans
-• Productivity
-• Time management
-• Coding
-• Exams
-• Motivation
-• Daily routines
-
-What would you like help with today?
-`;
-
-  }
-
-  // STUDY
-
-  if(lower.includes("study")){
-
-    return `
-📚 Study Strategy
-
-1. Study for 45 minutes.
-2. Take a 10 minute break.
-3. Use active recall.
-4. Use spaced repetition.
-5. Focus on weak topics first.
-
-This method improves retention and reduces burnout.
-`;
-
-  }
-
-  // EXAMS
-
-  if(lower.includes("exam")){
-
-    return `
-🎯 Exam Preparation Plan
-
-Morning:
-• Revise theory
-
-Afternoon:
-• Practice questions
-
-Evening:
-• Review mistakes
-
-Night:
-• Quick recap
-
-Focus on understanding concepts instead of memorizing everything.
-`;
-
-  }
-
-  // SCHEDULE
-
-  if(lower.includes("schedule")){
-
-    return `
-📅 Recommended Daily Schedule
-
-6:00 AM - Wake up
-
-7:00 AM - Study Session 1
-
-10:00 AM - Break
-
-11:00 AM - Study Session 2
-
-2:00 PM - Practice Problems
-
-5:00 PM - Exercise
-
-7:00 PM - Revision
-
-9:00 PM - Planning Tomorrow
-`;
-
-  }
-
-  // MOTIVATION
-
-  if(lower.includes("motivation")){
-
-    return `
-🔥 Motivation Tip
-
-Don't wait for motivation.
-
-Build discipline.
-
-Even 20 minutes of focused work every day beats waiting for the perfect mood to start.
-`;
-
-  }
-
-  // CODING
-
-  if(
-    lower.includes("code") ||
-    lower.includes("javascript") ||
-    lower.includes("html") ||
-    lower.includes("css")
-  ){
-
-    return `
-💻 Coding Help
-
-I can help with:
-
-• HTML
-• CSS
-• JavaScript
-• Debugging
-• Website design
-
-Describe your problem and I'll guide you step-by-step.
-`;
-
-  }
-
-  // PRODUCTIVITY
-
-  if(
-    lower.includes("productive") ||
-    lower.includes("productivity")
-  ){
-
-    return `
-⚡ Productivity System
-
-1. Plan your day.
-2. Prioritize 3 important tasks.
-3. Use Pomodoro sessions.
-4. Remove distractions.
-5. Track progress daily.
-
-Consistency beats intensity.
-`;
-
-  }
-
-  // DEFAULT
-
-  return `
-I'm EchoMind AI.
-
-I can help with:
-• Studying
-• Exams
-• Productivity
-• Schedules
-• Coding
-• Time management
-
-Tell me more about what you need help with and I'll create a detailed plan.
-`;
-
-}
-
-function sendMessage(){
+async function sendMessage(){
 
   const message =
   userInput.value.trim();
@@ -907,21 +739,62 @@ function sendMessage(){
 
   chatMessages.appendChild(aiDiv);
 
-  setTimeout(() => {
+  try{
+
+    const response =
+    await fetch(
+      "https://echomind-api.godtelesman.workers.dev",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+          "application/json"
+        },
+
+        body: JSON.stringify({
+
+          messages: [
+
+            {
+              role: "system",
+              content:
+              "You are EchoMind AI. You help students with studying, coding, productivity, exams, schedules and learning. Give detailed helpful answers."
+            },
+
+            {
+              role: "user",
+              content: message
+            }
+
+          ]
+
+        })
+
+      }
+    );
+
+    const data =
+    await response.json();
+
+    console.log(data);
 
     aiDiv.textContent =
-    fakeAIResponse(message);
+    data.choices[0].message.content;
 
-    chatMessages.scrollTop =
-    chatMessages.scrollHeight;
+  }catch(error){
 
-  },1000);
+    console.log(error);
+
+    aiDiv.textContent =
+    "Error connecting to AI.";
+
+  }
+
+  chatMessages.scrollTop =
+  chatMessages.scrollHeight;
 
 }
-
-
-
-// BUTTON
 
 if(sendBtn){
 
@@ -931,8 +804,6 @@ if(sendBtn){
   );
 
 }
-
-// ENTER KEY
 
 if(userInput){
 
@@ -950,5 +821,3 @@ if(userInput){
   );
 
 }
-
-
