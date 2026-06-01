@@ -686,14 +686,6 @@ Give detailed answers and help students with studying, coding, exams and product
 
 ];
 
-const sendBtn =
-document.getElementById("sendBtn");
-
-const userInput =
-document.getElementById("userInput");
-
-const chatMessages =
-document.getElementById("chatMessages");
 
 // =========================
 // REAL AI CHAT
