@@ -914,7 +914,7 @@ Tell me more about what you need help with and I'll create a detailed plan.
 
   },1000);
 
-}
+
 
 // BUTTON
 
