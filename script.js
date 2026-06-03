@@ -766,13 +766,22 @@ async function sendMessage(){
       }
     );
 
-    const data =
-    await response.json();
+const data =
+await response.json();
 
-    console.log(data);
+console.log(data);
 
-    aiDiv.textContent =
-    data.choices[0].message.content;
+if(data.error){
+
+  aiDiv.textContent =
+  "API Error: " +
+  data.error.message;
+
+  return;
+}
+
+aiDiv.textContent =
+data.choices[0].message.content;
 
   }catch(error){
 
