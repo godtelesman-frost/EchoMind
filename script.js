@@ -775,47 +775,4 @@ data.choices[0].message.content;
 
 aiDiv.textContent = reply;
 
-conversationHistory.push({
-  role: "assistant",
-  content: reply
-});
 
-  }catch(error){
-
-    console.log(error);
-
-    aiDiv.textContent =
-    "Error connecting to AI.";
-
-  }
-
-  chatMessages.scrollTop =
-  chatMessages.scrollHeight;
-
-}
-
-if(sendBtn){
-
-  sendBtn.addEventListener(
-    "click",
-    sendMessage
-  );
-
-}
-
-if(userInput){
-
-  userInput.addEventListener(
-    "keypress",
-    function(e){
-
-      if(e.key === "Enter"){
-
-        sendMessage();
-
-      }
-
-    }
-  );
-
-}
