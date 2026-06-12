@@ -671,21 +671,25 @@ if(generatePlanBtn){
 
 }
 // =========================
-// DEMO AI CHAT
+// CONVERSATION MEMORY
 // =========================
-let conversationHistory = [
 
+let conversationHistory = [
   {
     role: "system",
     content: `
-You are EchoMind AI.
-You are an advanced AI assistant.
-Give detailed answers and help students with studying, coding, exams and productivity.
+You are EchoMind AI, an expert educational assistant.
+
+Be conversational and thoughtful.
+Give detailed answers with examples.
+Use headings and bullet points.
+Adapt explanations to the student's level.
+Ask follow-up questions when information is missing.
+If the user is stressed about exams, provide practical guidance.
+Avoid overly short answers.
 `
   }
-
 ];
-
 
 // =========================
 // REAL AI CHAT
@@ -744,28 +748,14 @@ async function sendMessage(){
           "application/json"
         },
 
-        body: JSON.stringify({
+       conversationHistory.push({
+  role: "user",
+  content: message
+});
 
-          messages: [
-
-            {
-              role: "system",
-              content:
-              "You are EchoMind AI. You help students with studying, coding, productivity, exams, schedules and learning. Give detailed helpful answers."
-            },
-
-            {
-              role: "user",
-              content: message
-            }
-
-          ]
-
-        })
-
-      }
-    );
-
+body: JSON.stringify({
+  messages: conversationHistory
+})
 const data =
 await response.json();
 
@@ -780,8 +770,15 @@ if(data.error){
   return;
 }
 
-aiDiv.textContent =
+const reply =
 data.choices[0].message.content;
+
+aiDiv.textContent = reply;
+
+conversationHistory.push({
+  role: "assistant",
+  content: reply
+});
 
   }catch(error){
 
